@@ -1,7 +1,8 @@
-// Video 17:00
+// MODULES //////////////////////////////
 const http = require('http');
 const fs = require('fs');
 
+// FUNCTION //////////////////////////////
 const replaceTemplate = (temp, product) => {
   let output = temp.replaceAll('{%PRODUCTNAME%}', product.productName);
   output = output.replaceAll('{%IMAGE%}', product.image);
@@ -17,6 +18,7 @@ const replaceTemplate = (temp, product) => {
   return output;
 };
 
+// FILES //////////////////////////////
 const tempOverview = fs.readFileSync(
   `${__dirname}/templates/template-overview.html`,
   'utf-8'
@@ -30,9 +32,11 @@ const tempProduct = fs.readFileSync(
   'utf-8'
 );
 
+// DATA //////////////////////////////
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
 
+// ROUTER //////////////////////////////
 const server = http.createServer((req, res) => {
   const pathName = req.url;
 
@@ -68,6 +72,7 @@ const server = http.createServer((req, res) => {
   }
 });
 
+// SERVER //////////////////////////////
 server.listen(8000, '127.0.0.1', () => {
   console.log('listening on http://127.0.0.1:8000/');
 });
