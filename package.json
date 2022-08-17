@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/NicholasGillespie/node-farm/issues"
   },
-  "homepage": "https://github.com/NicholasGillespie/node-farm#readme"
+  "homepage": "https://github.com/NicholasGillespie/node-farm#readme",
+  "dependencies": {
+    "slugify": "~1.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
 }
