@@ -1,8 +1,8 @@
-// MODULES //////////////////////////////
+/* MODULES ////////////////////////////// */
 const http = require('http');
 const fs = require('fs');
 
-// FUNCTION //////////////////////////////
+/* FUNCTION ////////////////////////////// */
 const replaceTemplate = (temp, product) => {
   let output = temp.replaceAll('{%PRODUCTNAME%}', product.productName);
   output = output.replaceAll('{%IMAGE%}', product.image);
@@ -18,7 +18,7 @@ const replaceTemplate = (temp, product) => {
   return output;
 };
 
-// FILES //////////////////////////////
+// FILES - TEMPLATES ////////////////////////////// */
 const tempOverview = fs.readFileSync(
   `${__dirname}/templates/template-overview.html`,
   'utf-8'
@@ -27,19 +27,19 @@ const tempCard = fs.readFileSync(
   `${__dirname}/templates/template-card.html`,
   'utf-8'
 );
-const tempProduct = fs.readFileSync(
-  `${__dirname}/templates/template-product.html`,
-  'utf-8'
-);
+// const tempProduct = fs.readFileSync(
+//   `${__dirname}/templates/template-product.html`,
+//   'utf-8'
+// );
 
-// DATA //////////////////////////////
+/* DATA - API ////////////////////////////// */
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
 
-// ROUTER //////////////////////////////
+/* SERVER - CREATE ////////////////////////////// */
 const server = http.createServer((req, res) => {
+  /* ROUTER ////////////////////////////// */
   const pathName = req.url;
-
   // Overview page
   if (pathName === '/' || pathName === '/overview') {
     res.writeHead(200, { 'Content-type': 'text/html' });
@@ -72,7 +72,9 @@ const server = http.createServer((req, res) => {
   }
 });
 
-// SERVER //////////////////////////////
+/* SERVER - LISTEN //////////////////////////////
+  Listens for incoming requests; Basically starts up the server
+  */
 server.listen(8000, '127.0.0.1', () => {
-  console.log('listening on http://127.0.0.1:8000/');
+  console.log('Listening to requests on port : http://127.0.0.1:8000/');
 });
